@@ -33,6 +33,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
         }
 
         nav ul {
@@ -47,7 +48,10 @@
         }
 
         .logo {
-            height: 50px;
+            height: 80px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         /* Parallax Sections */
@@ -85,7 +89,7 @@
 
         /* Moving Banner */
         .marquee {
-            background: #000000;
+            background: #ff4444;
             color: white;
             padding: 10px 0;
             overflow: hidden;
@@ -127,8 +131,7 @@
             color: white;
             padding: 2rem;
             display: flex;
-            flex-direction: column;
-            align-items: center;
+            justify-content: center;
         }
 
         .footer-content {
@@ -136,7 +139,14 @@
             max-width: 1200px;
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-start; /* Align items to the top */
+        }
+
+        .footer-left {
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
         }
 
         .footer-logo {
@@ -144,12 +154,11 @@
             margin-bottom: 1rem;
         }
 
-        .footer-left {
-            text-align: left;
-        }
-
         .footer-right {
             text-align: right;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* Align content to the top */
         }
 
         .footer-right a {
@@ -162,6 +171,12 @@
             nav ul {
                 flex-direction: column;
                 gap: 1rem;
+            }
+
+            .logo {
+                position: static;
+                transform: none;
+                margin: 1rem auto;
             }
 
             .content {
@@ -177,8 +192,13 @@
                 text-align: center;
             }
 
+            .footer-left {
+                align-items: center;
+            }
+
             .footer-right {
                 margin-top: 1rem;
+                align-items: center;
             }
         }
     </style>
@@ -231,9 +251,9 @@
 
     <!-- Footer -->
     <footer>
-        <img src="https://scontent-iad3-1.xx.fbcdn.net/v/t39.30808-6/481814329_1302637640976089_2876000521453736078_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=VARFTlCkcHwQ7kNvgGtq_M-&_nc_oc=AdjEZV9GgKRre0hwlMd-wD_J0_jyCo-AfRvKKAyz8eSUakuuoDNoz-gf_OAohNeZsjt2EXZgcBCbHM5QIY7ZjN6e&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&_nc_gid=AFKodEuBhglwQ4DiOqiDGC9&oh=00_AYAOXxd95nEBsVa0sfVSUnXgE19re-i4ha60qfMmqIQY1A&oe=67CEF291" alt="Fruit Nuggs Logo" class="footer-logo">
         <div class="footer-content">
             <div class="footer-left">
+                <img src="https://scontent-iad3-1.xx.fbcdn.net/v/t39.30808-6/481814329_1302637640976089_2876000521453736078_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=VARFTlCkcHwQ7kNvgGtq_M-&_nc_oc=AdjEZV9GgKRre0hwlMd-wD_J0_jyCo-AfRvKKAyz8eSUakuuoDNoz-gf_OAohNeZsjt2EXZgcBCbHM5QIY7ZjN6e&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&_nc_gid=AFKodEuBhglwQ4DiOqiDGC9&oh=00_AYAOXxd95nEBsVa0sfVSUnXgE19re-i4ha60qfMmqIQY1A&oe=67CEF291" alt="Fruit Nuggs Logo" class="footer-logo">
                 <p>© 2025 FruitNuggs. All rights reserved.</p>
             </div>
             <div class="footer-right">
