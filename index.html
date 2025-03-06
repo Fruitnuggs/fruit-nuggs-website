@@ -16,7 +16,7 @@
             overflow-x: hidden;
         }
 
-        /* Fixed Header */
+        /* Fixed Header with Curvy Line */
         header {
             position: fixed;
             top: 0;
@@ -25,6 +25,7 @@
             color: white;
             padding: 1rem;
             z-index: 1000;
+            clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 80%);
         }
 
         nav {
@@ -34,6 +35,7 @@
             justify-content: space-between;
             align-items: center;
             position: relative;
+            z-index: 2;
         }
 
         nav ul {
@@ -52,6 +54,12 @@
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
+            top: 50%;
+            margin-top: -40px; /* Half of height to center vertically */
+            z-index: 3;
+            background: rgba(0, 0, 0, 0.8); /* Match header background */
+            padding: 5px;
+            border-radius: 10px;
         }
 
         /* Parallax Sections */
@@ -125,13 +133,15 @@
             transform: scale(1.1);
         }
 
-        /* Footer */
+        /* Footer with Curvy Bottom */
         footer {
             background: #333;
             color: white;
             padding: 2rem;
             display: flex;
             justify-content: center;
+            position: relative;
+            clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 80%);
         }
 
         .footer-content {
@@ -139,7 +149,9 @@
             max-width: 1200px;
             display: flex;
             justify-content: space-between;
-            align-items: flex-start; /* Align items to the top */
+            align-items: flex-start;
+            z-index: 2;
+            position: relative;
         }
 
         .footer-left {
@@ -158,7 +170,7 @@
             text-align: right;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start; /* Align content to the top */
+            justify-content: flex-start;
         }
 
         .footer-right a {
@@ -177,6 +189,10 @@
                 position: static;
                 transform: none;
                 margin: 1rem auto;
+            }
+
+            header {
+                clip-path: none; /* Disable curve on mobile for simplicity */
             }
 
             .content {
@@ -199,6 +215,10 @@
             .footer-right {
                 margin-top: 1rem;
                 align-items: center;
+            }
+
+            footer {
+                clip-path: none; /* Disable curve on mobile for simplicity */
             }
         }
     </style>
