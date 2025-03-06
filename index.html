@@ -83,7 +83,7 @@
             height: 100vh;
             background-position: center;
             background-repeat: no-repeat;
-            background-size: cover;
+            background-size: cover; /* Ensure image covers the entire area */
             position: relative;
             display: flex;
             align-items: center;
@@ -230,6 +230,8 @@
 
             .parallax {
                 background-attachment: scroll;
+                background-size: cover; /* Ensure image fits the screen */
+                background-position: center center; /* Center the image */
             }
 
             .content {
@@ -250,7 +252,7 @@
             }
 
             .footer-logo {
-                height: 60px; /* Increased size for mobile */
+                height: 60px;
             }
 
             .footer-right {
@@ -350,6 +352,22 @@
             });
         });
 
+        // Simulated parallax effect for mobile
+        function simulateParallax() {
+            const parallaxSections = document.querySelectorAll('.parallax');
+            const isMobile = window.innerWidth <= 768;
+
+            if (isMobile) {
+                window.addEventListener('scroll', function() {
+                    parallaxSections.forEach(section => {
+                        const offset = section.getBoundingClientRect().top;
+                        const speed = 0.3; // Adjust speed for parallax effect
+                        section.style.backgroundPositionY = `${offset * speed}px`;
+                    });
+                });
+            }
+        }
+
         // Parallax effect adjustment
         function adjustParallax() {
             const parallaxSections = document.querySelectorAll('.parallax');
@@ -364,7 +382,10 @@
             }
         }
 
-        window.addEventListener('load', adjustParallax);
+        window.addEventListener('load', () => {
+            adjustParallax();
+            simulateParallax();
+        });
         window.addEventListener('resize', adjustParallax);
     </script>
 </body>
