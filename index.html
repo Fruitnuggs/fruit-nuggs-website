@@ -15,9 +15,9 @@
             font-family: Arial, sans-serif;
             overflow-x: hidden;
             background: #000;
-            position: relative;
         }
 
+        /* Fixed Header with Curvy Line */
         header {
             position: fixed;
             top: 0;
@@ -43,7 +43,7 @@
             list-style: none;
             display: flex;
             gap: 2rem;
-            transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out; /* Added for smoother mobile menu */
         }
 
         nav a {
@@ -64,6 +64,7 @@
             border-radius: 10px;
         }
 
+        /* Hamburger Menu */
         .hamburger {
             display: none;
             font-size: 24px;
@@ -78,54 +79,30 @@
             display: none;
         }
 
-        /* New Background Image Container */
-        .background-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
+        /* Parallax Sections */
+        .parallax {
             height: 100vh;
-            z-index: 0;
-            overflow: hidden;
-        }
-
-        .background-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out; /* Smooth fade between images */
-        }
-
-        .background-image.active {
-            opacity: 1;
-        }
-
-        .section1-bg {
-            background-image: url('https://scontent-iad3-1.xx.fbcdn.net/v/t39.30808-6/481240205_122104708496788144_7861009559523656818_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=127cfc&_nc_ohc=HMYuE5V7OfcQ7kNvgGRFxVc&_nc_oc=AdhVUGaEBB2qHzaOyMnHEmROhUMnEO8A-WoYtiZm8Ta2_hCbshpMem6-TojJe7HkbxIOzuFLVEqbJtDXnlHJvpMd&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&_nc_gid=AFOu504uPotz9k5IUszDL8t&oh=00_AYAODXtLDP160OxkjMnZ8AJWyM1QGMZeVLOuxQ3RfsPrXA&oe=67CF14D8');
-        }
-
-        .section2-bg {
-            background-image: url('https://scontent-iad3-1.xx.fbcdn.net/v/t39.30808-6/481224988_122103381554788144_3758171466406026658_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=OACE15PFTYoQ7kNvgGL5HlH&_nc_oc=AdjPYacBjDQHJNpddX6pG434UPgXdzJYHuG5qUZI5SeUFdpWnIRLjViQRcObWso6zlxqX6aloCpRlMBxlBa7Lk4L&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&_nc_gid=Ac5twwD9b5-A3Sqw7ZTg1Be&oh=00_AYDNujkDGgo4O_jpDN9CsVJa0hBpAJT6btdieeG5TY1YBg&oe=67CEF6C6');
-        }
-
-        .section3-bg {
-            background-image: url('https://scontent-iad3-1.xx.fbcdn.net/v/t39.30808-6/481265542_122103381548788144_2439754144633299739_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=2Jv3Lof3zgIQ7kNvgGyc98p&_nc_oc=Adh4HVKpMyMrEF08FgXNtIkpibWL2LBage6IWSiLLTJn5dlZHbpOam7eDG0B3ngXqMkZ_K5x_7QVs0lwMT5nOvRK&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&_nc_gid=ACbfvk6CSAX3x9jbsMrByTc&oh=00_AYBXEwUrebSYBuUopyBlcVso9ajcO0Swom9TOo1B_3m0wg&oe=67CF15F1');
-        }
-
-        /* Content Sections */
-        .parallax {
-            height: 100vh;
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 1; /* Above background */
+            -webkit-backface-visibility: hidden; /* Moved here from JS */
+            backface-visibility: hidden;
+        }
+
+        .section1 {
+            background-image: url('https://scontent-iad3-1.xx.fbcdn.net/v/t39.30808-6/481240205_122104708496788144_7861009559523656818_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=127cfc&_nc_ohc=HMYuE5V7OfcQ7kNvgGRFxVc&_nc_oc=AdhVUGaEBB2qHzaOyMnHEmROhUMnEO8A-WoYtiZm8Ta2_hCbshpMem6-TojJe7HkbxIOzuFLVEqbJtDXnlHJvpMd&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&_nc_gid=AFOu504uPotz9k5IUszDL8t&oh=00_AYAODXtLDP160OxkjMnZ8AJWyM1QGMZeVLOuxQ3RfsPrXA&oe=67CF14D8');
+        }
+
+        .section2 {
+            background-image: url('https://scontent-iad3-1.xx.fbcdn.net/v/t39.30808-6/481224988_122103381554788144_3758171466406026658_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=OACE15PFTYoQ7kNvgGL5HlH&_nc_oc=AdjPYacBjDQHJNpddX6pG434UPgXdzJYHuG5qUZI5SeUFdpWnIRLjViQRcObWso6zlxqX6aloCpRlMBxlBa7Lk4L&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&_nc_gid=Ac5twwD9b5-A3Sqw7ZTg1Be&oh=00_AYDNujkDGgo4O_jpDN9CsVJa0hBpAJT6btdieeG5TY1YBg&oe=67CEF6C6');
+        }
+
+        .section3 {
+            background-image: url('https://scontent-iad3-1.xx.fbcdn.net/v/t39.30808-6/481265542_122103381548788144_2439754144633299739_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=2Jv3Lof3zgIQ7kNvgGyc98p&_nc_oc=Adh4HVKpMyMrEF08FgXNtIkpibWL2LBage6IWSiLLTJn5dlZHbpOam7eDG0B3ngXqMkZ_K5x_7QVs0lwMT5nOvRK&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&_nc_gid=ACbfvk6CSAX3x9jbsMrByTc&oh=00_AYBXEwUrebSYBuUopyBlcVso9ajcO0Swom9TOo1B_3m0wg&oe=67CF15F1');
         }
 
         .content {
@@ -136,6 +113,7 @@
             border-radius: 10px;
         }
 
+        /* Moving Banner */
         .marquee {
             background: #000;
             color: white;
@@ -149,8 +127,8 @@
         .marquee span {
             display: inline-block;
             animation: marquee 15s linear infinite;
-            will-change: transform;
-            transform: translateZ(0);
+            will-change: transform; /* Added for performance */
+            transform: translateZ(0); /* GPU acceleration */
         }
 
         @keyframes marquee {
@@ -158,6 +136,7 @@
             100% { transform: translateX(-100%); }
         }
 
+        /* Buy Now Button */
         .buy-now {
             position: fixed;
             bottom: 20px;
@@ -176,13 +155,16 @@
             transform: scale(1.1);
         }
 
+        /* Footer with Curvy Top and Bottom */
         footer {
             background: #333;
             color: white;
             padding: 2rem 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             position: relative;
             clip-path: polygon(0 20%, 50% 0, 100% 20%, 100% 80%, 50% 100%, 0 80%);
-            z-index: 1;
         }
 
         .footer-content {
@@ -191,7 +173,9 @@
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
-            align-items: center; /* Consistent alignment on desktop */
+            align-items: flex-start;
+            z-index: 2;
+            position: relative;
         }
 
         .footer-left {
@@ -210,7 +194,7 @@
             text-align: right;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
         }
 
         .footer-right a {
@@ -262,6 +246,11 @@
                 clip-path: none;
             }
 
+            .parallax {
+                background-attachment: scroll;
+                background-position: center center;
+            }
+
             .content {
                 padding: 1rem;
             }
@@ -275,17 +264,17 @@
                 align-items: center;
                 gap: 20px;
             }
-
+            
             .footer-left, .footer-right {
                 text-align: center;
                 align-items: center;
                 width: 100%;
             }
-
+            
             footer {
                 padding: 2rem 1rem 3rem 1rem;
             }
-
+            
             .wholesale-link {
                 margin-top: 15px;
             }
@@ -295,10 +284,10 @@
             }
         }
 
-        /* Desktop Parallax Fallback */
+        /* Ensure parallax works on desktop */
         @media (min-width: 769px) {
-            .background-container {
-                position: fixed; /* Still fixed for desktop */
+            .parallax {
+                background-attachment: fixed;
             }
         }
     </style>
@@ -318,15 +307,8 @@
         </nav>
     </header>
 
-    <!-- Background Images -->
-    <div class="background-container">
-        <div class="background-image section1-bg active" data-section="home"></div>
-        <div class="background-image section2-bg" data-section="about"></div>
-        <div class="background-image section3-bg" data-section="contact"></div>
-    </div>
-
     <!-- Parallax Sections -->
-    <div class="parallax" id="home">
+    <div class="parallax section1" id="home">
         <div class="content">
             <h1>Chill Bites with a Kick</h1>
             <p>Spicy-sour magic! Frozen mango, pineapple, grapes from Honduras—taste the SpiceFrost Fusion!</p>
@@ -337,7 +319,7 @@
         <span>Spicy Fruit Nuggs - Fresh from Honduras - Taste the Fusion - #FRUITNUGGS</span>
     </div>
 
-    <div class="parallax" id="about">
+    <div class="parallax section2" id="about">
         <div class="content">
             <h1>From Harvest to Hand</h1>
             <p>Hand-picked in Honduras, cubed to perfection, and coated with tajín-inspired magic—delivered fresh to you!</p>
@@ -348,7 +330,7 @@
         <span>#FRUITNUGGS Mango congelado 🥭❄️, piña 🍍❄️, uvas 🍇❄️, y fresa 🍓❄️—¡Con un toque mágico!</span>
     </div>
 
-    <div class="parallax" id="contact">
+    <div class="parallax section3" id="contact">
         <div class="content">
             <h1>Get Yours</h1>
             <p>Grab your 8oz cup of Fruit Nuggs today—spicy, sour, and ready to enjoy! #FRUITNUGGS </p>
@@ -357,7 +339,7 @@
 
     <!-- Buy Now Button -->
     <button class="buy-now" onclick="window.location.href='https://fruitnuggs.zobaze.shop'">Ordena Ahora</button>
-
+    
     <!-- Footer -->
     <footer>
         <div class="footer-content">
@@ -375,7 +357,7 @@
         </div>
     </footer>
 
-    <!-- JavaScript -->
+    <!-- Optimized JavaScript -->
     <script>
         // Smooth scrolling for navigation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -388,26 +370,18 @@
             });
         });
 
-        // Background image switching
-        function updateBackground() {
-            const sections = document.querySelectorAll('.parallax');
-            const backgroundImages = document.querySelectorAll('.background-image');
-            const scrollPosition = window.scrollY + window.innerHeight / 2;
-
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionBottom = sectionTop + section.offsetHeight;
-                const sectionId = section.id;
-
-                if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-                    backgroundImages.forEach(img => {
-                        img.classList.toggle('active', img.dataset.section === sectionId);
-                    });
-                }
+        // Optimized mobile parallax with debounce
+        function optimizeMobileParallax() {
+            const isMobile = window.innerWidth <= 768 || /iPad|iPhone|iPod|Android/.test(navigator.userAgent);
+            const parallaxSections = document.querySelectorAll('.parallax');
+            
+            parallaxSections.forEach(section => {
+                section.style.backgroundAttachment = isMobile ? 'scroll' : 'fixed';
+                section.style.backgroundPosition = 'center center';
             });
         }
 
-        // Debounce for performance
+        // Debounce function for performance
         function debounce(func, wait) {
             let timeout;
             return function() {
@@ -416,11 +390,10 @@
             };
         }
 
-        const debouncedUpdate = debounce(updateBackground, 100);
-        window.addEventListener('scroll', debouncedUpdate);
-        window.addEventListener('load', updateBackground);
-        window.addEventListener('resize', debouncedUpdate);
-        window.addEventListener('orientationchange', debouncedUpdate);
+        const debouncedOptimize = debounce(optimizeMobileParallax, 100);
+        window.addEventListener('load', optimizeMobileParallax);
+        window.addEventListener('resize', debouncedOptimize);
+        window.addEventListener('orientationchange', debouncedOptimize);
     </script>
 </body>
 </html>
