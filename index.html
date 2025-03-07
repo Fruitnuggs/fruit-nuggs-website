@@ -78,7 +78,7 @@
             display: none;
         }
 
-        /* Parallax Sections */
+        /* Desktop Parallax */
         .parallax {
             height: 100vh;
             background-position: center;
@@ -151,6 +151,7 @@
             transform: scale(1.1);
         }
 
+        /* Footer */
         footer {
             background: #333;
             color: white;
@@ -166,7 +167,7 @@
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
-            align-items: flex-end; /* Align items to bottom for consistent footer alignment */
+            align-items: flex-end; /* Align all items to bottom on desktop */
         }
 
         .footer-left {
@@ -174,7 +175,7 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            justify-content: flex-end; /* Push content down */
+            justify-content: flex-end; /* Push content to bottom */
         }
 
         .footer-logo {
@@ -186,7 +187,7 @@
             text-align: right;
             display: flex;
             flex-direction: column;
-            justify-content: flex-end; /* Push content down */
+            justify-content: flex-end; /* Push content to bottom */
         }
 
         .footer-right a {
@@ -206,7 +207,11 @@
             text-decoration: underline;
         }
 
-        /* Responsive Design */
+        /* Mobile Background Container */
+        .mobile-background {
+            display: none; /* Hidden on desktop */
+        }
+
         @media (max-width: 768px) {
             .hamburger {
                 display: block;
@@ -238,9 +243,35 @@
                 clip-path: none;
             }
 
+            /* Mobile: Hide parallax backgrounds and use fixed container */
             .parallax {
-                background-attachment: scroll; /* Mobile: no parallax, images don’t scroll */
-                background-position: center center;
+                background-image: none !important; /* Remove individual backgrounds */
+            }
+
+            .mobile-background {
+                display: block;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                z-index: 0;
+            }
+
+            .mobile-background div {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                display: none; /* Hidden by default */
+            }
+
+            .mobile-background div.active {
+                display: block; /* Show active image */
             }
 
             .content {
@@ -261,7 +292,7 @@
                 text-align: center;
                 align-items: center;
                 width: 100%;
-                justify-content: center; /* Center content vertically on mobile */
+                justify-content: center;
             }
 
             footer {
@@ -280,7 +311,7 @@
         /* Desktop Parallax */
         @media (min-width: 769px) {
             .parallax {
-                background-attachment: fixed; /* Desktop: restore original parallax */
+                background-attachment: fixed; /* Desktop: original parallax */
             }
         }
     </style>
@@ -296,9 +327,16 @@
                 <li><a href="#about">Process</a></li>
                 <li><a href="#contact">Get Yours</a></li>
             </ul>
-            <img src="https://scontent-iad3-1.xx.fbcdn.net/v/t39.30808-6/481814329_1302637640976089_2876000521453736078_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=VARFTlCkcHwQ7kNvgGtq_M-&_nc_oc=AdjEZV9GgKRre0hwlMd-wD_J0_jyCo-AfRvKKAyz8eSUakuuoDNoz-gf_OAohNeZsjt2EXZgcBCbHM5QIY7ZjN6e&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&_nc_gid=AFKodEuBhglwQ4DiOqiDGC9&oh=00_AYAOXxd95nEBsVa0sfVSUnXgE19re-i4ha60qfMmqIQY1A&oe=67CEF291" alt="Fruit Nuggs Logo" class="logo">
+            <img src="https://scontent-iad3-1.xx.fbcdn.net/v/t39.30808-6/481814329_1302637640976089_2876000521453736078_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=VARFTlCkcHwQ7kNvgGtq_M-&_nc_oc=AdjEZV9GgKRre0hwlMd-wD_J0_jyCo-AfRvKKAyz8eSUakuuoDnoZ-gf_OAohNeZsjt2EXZgcBCbHM5QIY7ZjN6e&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&_nc_gid=AFKodEuBhglwQ4DiOqiDGC9&oh=00_AYAOXxd95nEBsVa0sfVSUnXgE19re-i4ha60qfMmqIQY1A&oe=67CEF291" alt="Fruit Nuggs Logo" class="logo">
         </nav>
     </header>
+
+    <!-- Mobile Background Container -->
+    <div class="mobile-background">
+        <div class="section1-bg active" data-section="home" style="background-image: url('https://scontent-iad3-1.xx.fbcdn.net/v/t39.30808-6/481240205_122104708496788144_7861009559523656818_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=127cfc&_nc_ohc=HMYuE5V7OfcQ7kNvgGRFxVc&_nc_oc=AdhVUGaEBB2qHzaOyMnHEmROhUMnEO8A-WoYtiZm8Ta2_hCbshpMem6-TojJe7HkbxIOzuFLVEqbJtDXnlHJvpMd&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&_nc_gid=AFOu504uPotz9k5IUszDL8t&oh=00_AYAODXtLDP160OxkjMnZ8AJWyM1QGMZeVLOuxQ3RfsPrXA&oe=67CF14D8');"></div>
+        <div class="section2-bg" data-section="about" style="background-image: url('https://scontent-iad3-1.xx.fbcdn.net/v/t39.30808-6/481224988_122103381554788144_3758171466406026658_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=OACE15PFTYoQ7kNvgGL5HlH&_nc_oc=AdjPYacBjDQHJNpddX6pG434UPgXdzJYHuG5qUZI5SeUFdpWnIRLjViQRcObWso6zlxqX6aloCpRlMBxlBa7Lk4L&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&_nc_gid=Ac5twwD9b5-A3Sqw7ZTg1Be&oh=00_AYDNujkDGgo4O_jpDN9CsVJa0hBpAJT6btdieeG5TY1YBg&oe=67CEF6C6');"></div>
+        <div class="section3-bg" data-section="contact" style="background-image: url('https://scontent-iad3-1.xx.fbcdn.net/v/t39.30808-6/481265542_122103381548788144_2439754144633299739_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=2Jv3Lof3zgIQ7kNvgGyc98p&_nc_oc=Adh4HVKpMyMrEF08FgXNtIkpibWL2LBage6IWSiLLTJn5dlZHbpOam7eDG0B3ngXqMkZ_K5x_7QVs0lwMT5nOvRK&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&_nc_gid=ACbfvk6CSAX3x9jbsMrByTc&oh=00_AYBXEwUrebSYBuUopyBlcVso9ajcO0Swom9TOo1B_3m0wg&oe=67CF15F1');"></div>
+    </div>
 
     <!-- Parallax Sections -->
     <div class="parallax section1" id="home">
@@ -362,6 +400,43 @@
                 document.getElementById('menu-toggle').checked = false;
             });
         });
+
+        // Mobile background switching
+        function updateMobileBackground() {
+            const sections = document.querySelectorAll('.parallax');
+            const backgroundImages = document.querySelectorAll('.mobile-background div');
+            const scrollPosition = window.scrollY + window.innerHeight / 2;
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionBottom = sectionTop + section.offsetHeight;
+                const sectionId = section.id;
+
+                if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                    backgroundImages.forEach(img => {
+                        img.classList.toggle('active', img.dataset.section === sectionId);
+                    });
+                }
+            });
+        }
+
+        // Debounce for performance
+        function debounce(func, wait) {
+            let timeout;
+            return function() {
+                clearTimeout(timeout);
+                timeout = setTimeout(func, wait);
+            };
+        }
+
+        // Only run on mobile
+        if (window.innerWidth <= 768) {
+            const debouncedUpdate = debounce(updateMobileBackground, 50);
+            window.addEventListener('scroll', debouncedUpdate);
+            window.addEventListener('load', updateMobileBackground);
+            window.addEventListener('resize', debouncedUpdate);
+            window.addEventListener('orientationchange', debouncedUpdate);
+        }
     </script>
 </body>
 </html>
