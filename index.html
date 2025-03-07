@@ -325,7 +325,7 @@
     <!-- Buy Now Button -->
     <button class="buy-now" onclick="window.location.href='https://fruitnuggs.zobaze.shop'">Ordena Ahora</button>
 
-    <!-- Footer -->
+<!-- Footer -->
     <footer>
         <div class="footer-content">
             <div class="footer-left">
@@ -335,12 +335,15 @@
             <div class="footer-right">
                 <p>Got questions? Reach out via e-mail at:</p>
                 <a href="mailto:FruitNuggs@gmail.com">FruitNuggs@gmail.com</a>
+                <div style="margin-top: 15px;">
+                    <a href="https://forms.gle/Bf7LBrZBK78XTUgXA" target="_blank" style="display: inline-block; background-color: #ff4444; color: white; padding: 8px 15px; border-radius: 25px; text-decoration: none; font-weight: bold;">Become a Wholesaler</a>
+                </div>
             </div>
         </div>
     </footer>
 
-    <script>
-        // Smooth scrolling for navigation
+        <script>
+// Smooth scrolling for navigation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -352,41 +355,55 @@
             });
         });
 
-        // Simulated parallax effect for mobile
-        function simulateParallax() {
+        // Improved mobile parallax effect
+        function handleParallax() {
             const parallaxSections = document.querySelectorAll('.parallax');
             const isMobile = window.innerWidth <= 768;
-
+            
+            // Set initial background properties
+            parallaxSections.forEach(section => {
+                if (isMobile) {
+                    section.style.backgroundAttachment = 'scroll';
+                    section.style.backgroundPosition = 'center center';
+                } else {
+                    section.style.backgroundAttachment = 'fixed';
+                    section.style.backgroundPosition = 'center center';
+                }
+            });
+            
+            // For mobile, add scroll event listener for parallax effect
             if (isMobile) {
                 window.addEventListener('scroll', function() {
+                    const scrollTop = window.pageYOffset;
+                    
                     parallaxSections.forEach(section => {
-                        const offset = section.getBoundingClientRect().top;
-                        const speed = 0.3; // Adjust speed for parallax effect
-                        section.style.backgroundPositionY = `${offset * speed}px`;
+                        const sectionTop = section.offsetTop;
+                        const sectionHeight = section.offsetHeight;
+                        
+                        // Calculate how far the section is from the viewport
+                        const distance = scrollTop - sectionTop;
+                        
+                        // Only apply parallax when section is visible
+                        if (distance < sectionHeight && distance > -window.innerHeight) {
+                            // Apply parallax effect at slower speed (0.4) for smoother movement
+                            const yPos = -(distance * 0.4);
+                            section.style.backgroundPositionY = `calc(50% + ${yPos}px)`;
+                        }
                     });
                 });
             }
         }
 
-        // Parallax effect adjustment
-        function adjustParallax() {
-            const parallaxSections = document.querySelectorAll('.parallax');
-            if (window.innerWidth <= 768) {
-                parallaxSections.forEach(section => {
-                    section.style.backgroundAttachment = 'scroll';
-                });
-            } else {
-                parallaxSections.forEach(section => {
-                    section.style.backgroundAttachment = 'fixed';
-                });
-            }
-        }
-
-        window.addEventListener('load', () => {
-            adjustParallax();
-            simulateParallax();
+        // Initialize parallax effect
+        window.addEventListener('load', handleParallax);
+        
+        // Update parallax effect on window resize
+        window.addEventListener('resize', function() {
+            // Remove previous scroll event listeners
+            window.onscroll = null;
+            // Re-initialize parallax with new window dimensions
+            handleParallax();
         });
-        window.addEventListener('resize', adjustParallax);
     </script>
 </body>
 </html>
