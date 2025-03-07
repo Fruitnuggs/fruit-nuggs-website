@@ -15,9 +15,9 @@
             font-family: Arial, sans-serif;
             overflow-x: hidden;
             background: #000;
+            position: relative;
         }
 
-        /* Fixed Header with Curvy Line */
         header {
             position: fixed;
             top: 0;
@@ -43,7 +43,7 @@
             list-style: none;
             display: flex;
             gap: 2rem;
-            transition: all 0.3s ease-in-out; /* Added for smoother mobile menu */
+            transition: all 0.3s ease-in-out;
         }
 
         nav a {
@@ -64,7 +64,6 @@
             border-radius: 10px;
         }
 
-        /* Hamburger Menu */
         .hamburger {
             display: none;
             font-size: 24px;
@@ -79,7 +78,7 @@
             display: none;
         }
 
-        /* Parallax Sections */
+        /* Desktop Parallax */
         .parallax {
             height: 100vh;
             background-position: center;
@@ -89,7 +88,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            -webkit-backface-visibility: hidden; /* Moved here from JS */
+            z-index: 1;
+            -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
         }
 
@@ -113,7 +113,6 @@
             border-radius: 10px;
         }
 
-        /* Moving Banner */
         .marquee {
             background: #000;
             color: white;
@@ -127,8 +126,8 @@
         .marquee span {
             display: inline-block;
             animation: marquee 15s linear infinite;
-            will-change: transform; /* Added for performance */
-            transform: translateZ(0); /* GPU acceleration */
+            will-change: transform;
+            transform: translateZ(0);
         }
 
         @keyframes marquee {
@@ -136,7 +135,6 @@
             100% { transform: translateX(-100%); }
         }
 
-        /* Buy Now Button */
         .buy-now {
             position: fixed;
             bottom: 20px;
@@ -155,27 +153,29 @@
             transform: scale(1.1);
         }
 
-        /* Footer with Curvy Top and Bottom */
         footer {
             background: #333;
             color: white;
             padding: 2rem 1rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
             position: relative;
             clip-path: polygon(0 20%, 50% 0, 100% 20%, 100% 80%, 50% 100%, 0 80%);
+            z-index: 1;
         }
 
-        .footer-content {
+        .footer-container {
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-content {
+            width: 100%;
+            display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            z-index: 2;
-            position: relative;
         }
 
         .footer-left {
@@ -183,6 +183,7 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
+            margin-bottom: 20px;
         }
 
         .footer-logo {
@@ -194,7 +195,7 @@
             text-align: right;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
+            justify-content: flex-end;
         }
 
         .footer-right a {
@@ -214,7 +215,11 @@
             text-decoration: underline;
         }
 
-        /* Responsive Design */
+        /* Mobile Background Container */
+        .mobile-background {
+            display: none;
+        }
+
         @media (max-width: 768px) {
             .hamburger {
                 display: block;
@@ -247,8 +252,34 @@
             }
 
             .parallax {
-                background-attachment: scroll;
-                background-position: center center;
+                background-image: none !important;
+            }
+
+            .mobile-background {
+                display: block;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                z-index: 0;
+            }
+
+            .mobile-background div {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                opacity: 0;
+                transition: opacity 0.5s ease-in-out;
+            }
+
+            .mobile-background div.active {
+                opacity: 1;
             }
 
             .content {
@@ -264,17 +295,19 @@
                 align-items: center;
                 gap: 20px;
             }
-            
+
             .footer-left, .footer-right {
                 text-align: center;
                 align-items: center;
                 width: 100%;
+                justify-content: center;
+                margin-bottom: 0;
             }
-            
+
             footer {
                 padding: 2rem 1rem 3rem 1rem;
             }
-            
+
             .wholesale-link {
                 margin-top: 15px;
             }
@@ -284,7 +317,6 @@
             }
         }
 
-        /* Ensure parallax works on desktop */
         @media (min-width: 769px) {
             .parallax {
                 background-attachment: fixed;
@@ -303,9 +335,16 @@
                 <li><a href="#about">Process</a></li>
                 <li><a href="#contact">Get Yours</a></li>
             </ul>
-            <img src="https://scontent-iad3-1.xx.fbcdn.net/v/t39.30808-6/481814329_1302637640976089_2876000521453736078_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=VARFTlCkcHwQ7kNvgGtq_M-&_nc_oc=AdjEZV9GgKRre0hwlMd-wD_J0_jyCo-AfRvKKAyz8eSUakuuoDNoz-gf_OAohNeZsjt2EXZgcBCbHM5QIY7ZjN6e&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&_nc_gid=AFKodEuBhglwQ4DiOqiDGC9&oh=00_AYAOXxd95nEBsVa0sfVSUnXgE19re-i4ha60qfMmqIQY1A&oe=67CEF291" alt="Fruit Nuggs Logo" class="logo">
+            <img src="https://scontent-iad3-1.xx.fbcdn.net/v/t39.30808-6/481814329_1302637640976089_2876000521453736078_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=VARFTlCkcHwQ7kNvgGtq_M-&_nc_ht=scontent-iad3-1.xx&oh=00_AYAOXxd95nEBsVa0sfVSUnXgE19re-i4ha60qfMmqIQY1A&oe=67CEF291" alt="Fruit Nuggs Logo" class="logo">
         </nav>
     </header>
+
+    <!-- Mobile Background Container -->
+    <div class="mobile-background">
+        <div class="section1-bg active" data-section="home" style="background-image: url('https://scontent-iad3-1.xx.fbcdn.net/v/t39.30808-6/481240205_122104708496788144_7861009559523656818_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=127cfc&_nc_ohc=HMYuE5V7OfcQ7kNvgGRFxVc&_nc_oc=AdhVUGaEBB2qHzaOyMnHEmROhUMnEO8A-WoYtiZm8Ta2_hCbshpMem6-TojJe7HkbxIOzuFLVEqbJtDXnlHJvpMd&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&_nc_gid=AFOu504uPotz9k5IUszDL8t&oh=00_AYAODXtLDP160OxkjMnZ8AJWyM1QGMZeVLOuxQ3RfsPrXA&oe=67CF14D8');"></div>
+        <div class="section2-bg" data-section="about" style="background-image: url('https://scontent-iad3-1.xx.fbcdn.net/v/t39.30808-6/481224988_122103381554788144_3758171466406026658_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=OACE15PFTYoQ7kNvgGL5HlH&_nc_oc=AdjPYacBjDQHJNpddX6pG434UPgXdzJYHuG5qUZI5SeUFdpWnIRLjViQRcObWso6zlxqX6aloCpRlMBxlBa7Lk4L&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&_nc_gid=Ac5twwD9b5-A3Sqw7ZTg1Be&oh=00_AYDNujkDGgo4O_jpDN9CsVJa0hBpAJT6btdieeG5TY1YBg&oe=67CEF6C6');"></div>
+        <div class="section3-bg" data-section="contact" style="background-image: url('https://scontent-iad3-1.xx.fbcdn.net/v/t39.30808-6/481265542_122103381548788144_2439754144633299739_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=2Jv3Lof3zgIQ7kNvgGyc98p&_nc_oc=Adh4HVKpMyMrEF08FgXNtIkpibWL2LBage6IWSiLLTJn5dlZHbpOam7eDG0B3ngXqMkZ_K5x_7QVs0lwMT5nOvRK&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&_nc_gid=ACbfvk6CSAX3x9jbsMrByTc&oh=00_AYBXEwUrebSYBuUopyBlcVso9ajcO0Swom9TOo1B_3m0wg&oe=67CF15F1');"></div>
+    </div>
 
     <!-- Parallax Sections -->
     <div class="parallax section1" id="home">
@@ -339,25 +378,27 @@
 
     <!-- Buy Now Button -->
     <button class="buy-now" onclick="window.location.href='https://fruitnuggs.zobaze.shop'">Ordena Ahora</button>
-    
+
     <!-- Footer -->
     <footer>
-        <div class="footer-content">
-            <div class="footer-left">
-                <img src="https://scontent-iad3-1.xx.fbcdn.net/v/t39.30808-6/481814329_1302637640976089_2876000521453736078_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=VARFTlCkcHwQ7kNvgGtq_M-&_nc_oc=AdjEZV9GgKRre0hwlMd-wD_J0_jyCo-AfRvKKAyz8eSUakuuoDNoz-gf_OAohNeZsjt2EXZgcBCbHM5QIY7ZjN6e&_nc_zt=23&_nc_ht=scontent-iad3-1.xx&_nc_gid=AFKodEuBhglwQ4DiOqiDGC9&oh=00_AYAOXxd95nEBsVa0sfVSUnXgE19re-i4ha60qfMmqIQY1A&oe=67CEF291" alt="Fruit Nuggs Logo" class="footer-logo">
-                <p>© 2025 FruitNuggs. All rights reserved.</p>
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <img src="https://scontent-iad3-1.xx.fbcdn.net/v/t39.30808-6/481814329_1302637640976089_2876000521453736078_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=VARFTlCkcHwQ7kNvgGtq_M-&_nc_ht=scontent-iad3-1.xx&oh=00_AYAOXxd95nEBsVa0sfVSUnXgE19re-i4ha60qfMmqIQY1A&oe=67CEF291" alt="Fruit Nuggs Logo" class="footer-logo">
+                    <p>© 2025 FruitNuggs. All rights reserved.</p>
+                </div>
+                <div class="footer-right">
+                    <p>Got questions? Reach out via e-mail at:</p>
+                    <a href="mailto:FruitNuggs@gmail.com">FruitNuggs@gmail.com</a>
+                </div>
             </div>
-            <div class="footer-right">
-                <p>Got questions? Reach out via e-mail at:</p>
-                <a href="mailto:FruitNuggs@gmail.com">FruitNuggs@gmail.com</a>
+            <div class="wholesale-link">
+                <a href="https://forms.gle/Bf7LBrZBK78XTUgXA" target="_blank">Interested in wholesale? Click here</a>
             </div>
-        </div>
-        <div class="wholesale-link">
-            <a href="https://forms.gle/Bf7LBrZBK78XTUgXA" target="_blank">Interested in wholesale? Click here</a>
         </div>
     </footer>
 
-    <!-- Optimized JavaScript -->
+    <!-- JavaScript -->
     <script>
         // Smooth scrolling for navigation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -370,18 +411,38 @@
             });
         });
 
-        // Optimized mobile parallax with debounce
-        function optimizeMobileParallax() {
-            const isMobile = window.innerWidth <= 768 || /iPad|iPhone|iPod|Android/.test(navigator.userAgent);
-            const parallaxSections = document.querySelectorAll('.parallax');
-            
-            parallaxSections.forEach(section => {
-                section.style.backgroundAttachment = isMobile ? 'scroll' : 'fixed';
-                section.style.backgroundPosition = 'center center';
+        // Mobile background fading
+        function updateMobileBackground() {
+            if (window.innerWidth > 768) return;
+
+            const sections = document.querySelectorAll('.parallax');
+            const backgroundImages = document.querySelectorAll('.mobile-background div');
+            const scrollPosition = window.scrollY;
+            const windowHeight = window.innerHeight;
+
+            sections.forEach((section, index) => {
+                const sectionTop = section.offsetTop;
+                const sectionBottom = sectionTop + section.offsetHeight;
+                const nextSectionTop = index < sections.length - 1 ? sections[index + 1].offsetTop : document.body.scrollHeight;
+
+                if (scrollPosition >= sectionTop - windowHeight / 2 && scrollPosition < nextSectionTop - windowHeight / 2) {
+                    const progress = (scrollPosition - (sectionTop - windowHeight / 2)) / (section.offsetHeight + windowHeight);
+                    const currentImg = backgroundImages[index];
+                    const nextImg = backgroundImages[index + 1] || backgroundImages[index];
+
+                    backgroundImages.forEach(img => img.classList.remove('active'));
+
+                    currentImg.classList.add('active');
+                    currentImg.style.opacity = Math.max(1 - progress, 0);
+
+                    if (nextImg !== currentImg) {
+                        nextImg.classList.add('active');
+                        nextImg.style.opacity = Math.min(progress, 1);
+                    }
+                }
             });
         }
 
-        // Debounce function for performance
         function debounce(func, wait) {
             let timeout;
             return function() {
@@ -390,10 +451,13 @@
             };
         }
 
-        const debouncedOptimize = debounce(optimizeMobileParallax, 100);
-        window.addEventListener('load', optimizeMobileParallax);
-        window.addEventListener('resize', debouncedOptimize);
-        window.addEventListener('orientationchange', debouncedOptimize);
+        if (window.innerWidth <= 768) {
+            const debouncedUpdate = debounce(updateMobileBackground, 10);
+            window.addEventListener('scroll', debouncedUpdate);
+            window.addEventListener('load', updateMobileBackground);
+            window.addEventListener('resize', debouncedUpdate);
+            window.addEventListener('orientationchange', debouncedUpdate);
+        }
     </script>
 </body>
 </html>
